@@ -39,20 +39,20 @@
 #include "IO_Map.h"
 
 long int i;
-int j ,k, l;
-void Run_right(){
+int j ,k;
+void Run_right(int a){
 	k=0x01;
-	for(j=0;j<=l;j++){
+	for(j=0;j<=a;j++){
 	Bits1_PutVal(k ^ 0x0f);
-	for(i=0; i<=0x7ffff; i++);
+	for(i=0; i<=0x7fff; i++);
 	k=k<<1;
 	}
 	
 }
-void Run_left(){
-	for(j=0;j<=l;j++){
+void Run_left(int b){
+	for(j=0;j<=b;j++){
 	Bits1_PutVal(k ^ 0x0f);
-	for(i=0; i<=0x7ffff; i++);
+	for(i=0; i<=0x7fff; i++);
 	k=k>>1;
 	}
 	
@@ -63,7 +63,7 @@ int main(void)
 /*lint -restore Enable MISRA rule (6.3) checking. */
 {
   /* Write your local variable definition here */
-	
+	int l;
 
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
@@ -71,8 +71,10 @@ int main(void)
   i=0;
   while(1){
  	  for(l=6;l>=0;l--){
- 		  Run_right();
- 		  Run_left();
+ 		  
+ 		  Run_right(l);
+ 		  Run_left(l);
+ 	
  	  }
    		
    	 }
