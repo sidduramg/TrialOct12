@@ -38,21 +38,21 @@
 #include "PE_Const.h"
 #include "IO_Map.h"
 
-long int i;
-int j ,k;
-void Run_right(int a){
+int  i;
+int j,k;
+void Run_left(int a){
 	k=0x01;
 	for(j=0;j<=a;j++){
 	Bits1_PutVal(k ^ 0x0f);
-	for(i=0; i<=0x7fff; i++);
+	for(i=0; i<=0x7ffff; i++);
 	k=k<<1;
 	}
 	
 }
-void Run_left(int b){
+void Run_right(int b){
 	for(j=0;j<=b;j++){
 	Bits1_PutVal(k ^ 0x0f);
-	for(i=0; i<=0x7fff; i++);
+	for(i=0; i<=0x7ffff; i++);
 	k=k>>1;
 	}
 	
@@ -71,13 +71,10 @@ int main(void)
   i=0;
   while(1){
  	  for(l=6;l>=0;l--){
- 		  
- 		  Run_right(l);
  		  Run_left(l);
- 	
- 	  }
-   		
-   	 }
+ 		  Run_right(l);
+ 	  	  }
+   		}
 
   /* Write your code here */
   /* For example: for(;;) { } */
